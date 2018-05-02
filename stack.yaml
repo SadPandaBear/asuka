@@ -1,0 +1,7 @@
+resolver: lts-8.5
+
+packages:
+    - .
+
+extra-deps:
+    - discord-hs-0.2.2
