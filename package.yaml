@@ -24,6 +24,8 @@ dependencies:
 - discord-hs
 - pipes
 - text
+- http-conduit
+- bytestring
 
 library:
   source-dirs: src

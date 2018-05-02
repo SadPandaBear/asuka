@@ -1,7 +1,9 @@
 module Main where
 
-import Lib
-import Discord (runExample)
+import Network.Postmon 
+import Network.Bot
 
 main :: IO ()
-main = runExample
+main = do 
+  posts <- fetchPosts "JT498565583BR"
+  putStrLn posts

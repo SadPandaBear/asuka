@@ -1,9 +1,10 @@
 {-# LANGUAGE OverloadedStrings, RecordWildCards #-}
 
-module Discord
+module Network.Bot
     ( runExample
     ) where
 
+import Network.Postmon
 import Data.Text
 import Pipes
 

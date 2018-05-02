@@ -5,3 +5,4 @@ packages:
 
 extra-deps:
     - discord-hs-0.2.2
+    - http-conduit-2.2.3.1
