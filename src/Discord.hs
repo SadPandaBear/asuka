@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, RecordWildCards #-}
 
-module DiscordWSS
+module Discord
     ( runExample
     ) where
 
@@ -12,6 +12,10 @@ import Network.Discord
 reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
+replyMultiple msg = do
+  reply msg "Pong"
+  reply msg "Another Pong"
+
 runExample :: IO ()
 runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqgpA.kQ3BpczNN5UxGeny-Ph340ztnHo") $ do
   with ReadyEvent $ \(Init v u _ _ _) ->
@@ -19,4 +23,4 @@ runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqgpA.kQ3BpczNN5UxGeny-Ph340
 
   with MessageCreateEvent $ \msg@Message{..} -> do
     when ("Ping" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $
-      reply msg "Pong!"
+      replyMultiple msg

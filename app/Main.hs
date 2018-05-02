@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import DiscordWSS (runExample)
+import Discord (runExample)
 
 main :: IO ()
 main = runExample
