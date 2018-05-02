@@ -7,6 +7,7 @@ module Network.Bot
 import Network.Postmon
 import Data.Text
 import Pipes
+import System.IO.Unsafe (unsafePerformIO)
 
 import Network.Discord
 
@@ -31,4 +32,4 @@ runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqgpA.kQ3BpczNN5UxGeny-Ph340
 
   with MessageCreateEvent $ \msg@Message{..} -> do
     when ("Ping" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
-      replyMultiple msg
+      unsafePerformIO $ replyPost msg "JT498565583BR"

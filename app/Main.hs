@@ -5,5 +5,6 @@ import Network.Bot
 
 main :: IO ()
 main = do 
-  posts <- fetchPosts "JT498565583BR"
-  putStrLn posts
+  runExample
+  -- posts <- fetchPosts "JT498565583BR"
+  -- putStrLn posts
