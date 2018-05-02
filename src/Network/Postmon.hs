@@ -17,4 +17,4 @@ fetchPosts code = do
   initReq <- parseRequest url
   response <- httpLbs initReq
   return $ L8.unpack . getResponseBody $ response
- 
+  
