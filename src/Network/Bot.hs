@@ -4,7 +4,6 @@ module Network.Bot
     ( runExample
     ) where
 
-import Network.Postmon
 import Data.Text
 import Pipes
 
@@ -13,6 +12,7 @@ import Network.Discord
 reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
+replyMultiple :: Message -> Effect DiscordM ()
 replyMultiple msg = do
   reply msg "Pong"
   reply msg "Another Pong"
