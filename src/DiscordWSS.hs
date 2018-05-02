@@ -1,26 +1,22 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, RecordWildCards #-}
 
--- this is a simple example don't take it seriously
-
-module DiscordWSS 
+module DiscordWSS
     ( runExample
     ) where
 
-import Control.Monad.State
-import Data.Maybe
-
-import Network.URL
+import Data.Text
 import Pipes
 
-import Network.Discord.Types
-import Network.Discord.Gateway
+import Network.Discord
 
-data PutStrClient = PsClient
-instance Client PutStrClient where
-  getAuth _ = Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqV2Q.xt8xVWnLJ7TOXJimUMzaXwE-5KM"
+reply :: Message -> Text -> Effect DiscordM ()
+reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
 runExample :: IO ()
-runExample = runWebsocket (fromJust $ importURL "wss://gateway.discord.gg") PsClient $ do
-  st <- get
-  for (eventCore (getWebSocket st))
-    (\pl -> lift . liftIO $ print (pl:: Event))
+runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqgpA.kQ3BpczNN5UxGeny-Ph340ztnHo") $ do
+  with ReadyEvent $ \(Init v u _ _ _) ->
+    liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
+
+  with MessageCreateEvent $ \msg@Message{..} -> do
+    when ("Ping" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $
+      reply msg "Pong!"
