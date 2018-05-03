@@ -17,8 +17,7 @@ reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothi
 replyPost :: Message -> String -> IO (Effect DiscordM ())
 replyPost msg code = do 
   posts <- fetchPosts code
-  let content = pack posts
-  return $ reply msg content
+  return $ reply msg $ pack posts
 
 replyMultiple :: Message -> Effect DiscordM ()
 replyMultiple msg = do

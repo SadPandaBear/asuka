@@ -13,8 +13,7 @@ gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
 
 fetchPosts :: String -> IO String
 fetchPosts code = do
-  let url = gateway code
-  initReq <- parseRequest url
+  initReq <- parseRequest $ gateway code
   response <- httpLbs initReq
   return $ L8.unpack . getResponseBody $ response
   
