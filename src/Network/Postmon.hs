@@ -11,13 +11,28 @@ import Data.Aeson
 import Data.Text
 import GHC.Generics
 
-data Posts =
-  Posts { codigo  :: !Text
-         , servico :: !Text
-           } deriving (Show, Generic)
+data History = History { 
+    date :: String
+  , local :: String
+  , situacao :: String
+  } deriving (Show, Generic)
+
+instance FromJSON History
+instance ToJSON History where
+  toJSON dt = object 
+    [ "data" .= date dt
+    , "local" .= local dt
+    , "situacao" .= situacao dt
+    ]
+
+data Posts = Posts { 
+    historico :: !Array -- TODO: Fix this shit
+  , codigo  :: String
+  , servico :: String
+  } deriving (Show, Generic)
 
 instance FromJSON Posts
-instance ToJSON Posts           
+instance ToJSON Posts         
 
 gateway :: String -> String
 gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"

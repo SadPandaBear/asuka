@@ -22,6 +22,7 @@ replyPost msg code = do
   print posts
   case posts of
       Just a -> return $ reply msg $ pack $ show a
+      -- TODO: Fix this shit
       Nothing -> return $ reply msg $ pack "Nothing found actually"
 
 runExample :: IO ()
@@ -31,5 +32,6 @@ runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DczDKw.vB6qmtGyRviCJOQhUYaKOE
 
   with MessageCreateEvent $ \msg@Message{..} -> do
     when ("baka!" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
+      -- TODO: Fix this shit
       unsafePerformIO $ replyPost msg messageContent
       
