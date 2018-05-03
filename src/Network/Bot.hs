@@ -26,7 +26,7 @@ replyPost msg code = do
       Nothing -> return $ reply msg $ pack "Nothing found actually"
 
 runExample :: IO ()
-runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DczDKw.vB6qmtGyRviCJOQhUYaKOEPWuOc") $ do
+runExample = runBot (Bot "Token") $ do
   with ReadyEvent $ \(Init v u _ _ _) ->
     liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
 
