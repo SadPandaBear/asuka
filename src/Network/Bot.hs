@@ -15,7 +15,7 @@ import Network.Discord
 reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
--- replyPost :: Message -> Text -> IO (Effect DiscordM ())
+replyPost :: Message -> Text -> IO (Effect DiscordM ())
 replyPost msg code = do 
   let str = L.dropWord code
   posts <- fetchPosts $ unpack str 
