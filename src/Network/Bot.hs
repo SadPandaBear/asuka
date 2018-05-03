@@ -26,7 +26,7 @@ replyMultiple msg = do
   reply msg "Another Pong"
 
 runExample :: IO ()
-runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DcqgpA.kQ3BpczNN5UxGeny-Ph340ztnHo") $ do
+runExample = runBot (Bot "TOKEN") $ do
   with ReadyEvent $ \(Init v u _ _ _) ->
     liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
 
