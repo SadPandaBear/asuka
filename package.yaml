@@ -26,6 +26,7 @@ dependencies:
 - text
 - http-conduit
 - bytestring
+- text-manipulate
 
 library:
   source-dirs: src

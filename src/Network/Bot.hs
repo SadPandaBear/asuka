@@ -6,6 +6,7 @@ module Network.Bot
 
 import Network.Postmon
 import Data.Text
+import Data.Text.Manipulate as L
 import Pipes
 import System.IO.Unsafe (unsafePerformIO)
 
@@ -14,22 +15,18 @@ import Network.Discord
 reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
-replyPost :: Message -> String -> IO (Effect DiscordM ())
+-- replyPost :: Message -> Text -> IO (Effect DiscordM ())
 replyPost msg code = do 
-  posts <- fetchPosts code
+  let str = L.dropWord code
+  posts <- fetchPosts $ unpack str 
   return $ reply msg $ pack posts
 
-replyMultiple :: Message -> Effect DiscordM ()
-replyMultiple msg = do
-  reply msg "Pong"
-  reply msg "Another Pong"
-
 runExample :: IO ()
-runExample = runBot (Bot "TOKEN") $ do
+runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DczDKw.vB6qmtGyRviCJOQhUYaKOEPWuOc") $ do
   with ReadyEvent $ \(Init v u _ _ _) ->
     liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
 
   with MessageCreateEvent $ \msg@Message{..} -> do
-    when ("Ping" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
-      unsafePerformIO $ replyPost msg "JT498565583BR"
+    when ("baka!" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
+      unsafePerformIO $ replyPost msg messageContent
       
