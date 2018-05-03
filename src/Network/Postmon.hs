@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
 
 module Network.Postmon 
     ( fetchPosts
@@ -6,14 +6,24 @@ module Network.Postmon
 
 import Control.Exception (try)
 import qualified Data.ByteString.Lazy.Char8 as L8
-import Network.HTTP.Simple
+import Network.HTTP.Conduit
+import Data.Aeson
+import Data.Text
+import GHC.Generics
+
+data Posts =
+  Posts { codigo  :: !Text
+         , servico :: !Text
+           } deriving (Show, Generic)
+
+instance FromJSON Posts
+instance ToJSON Posts           
 
 gateway :: String -> String
 gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
 
 fetchPosts :: String -> IO String
 fetchPosts code = do
-  initReq <- parseRequest $ gateway code
-  response <- httpLbs initReq
-  return $ L8.unpack . getResponseBody $ response
+  response <- simpleHttp $ gateway code
+  return $ L8.unpack response
   

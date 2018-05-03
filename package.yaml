@@ -27,6 +27,7 @@ dependencies:
 - http-conduit
 - bytestring
 - text-manipulate
+- aeson
 
 library:
   source-dirs: src
