@@ -8,7 +8,6 @@ import Network.Postmon
 import Data.Text
 import Data.Text.Manipulate as L
 import Pipes
-import System.IO.Unsafe (unsafePerformIO)
 
 import Network.Discord
 

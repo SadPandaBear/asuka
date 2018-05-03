@@ -4,8 +4,6 @@ module Network.Postmon
     ( fetchPosts
     ) where
 
-import Control.Exception (try)
-import qualified Data.ByteString.Lazy.Char8 as L8
 import Network.HTTP.Conduit
 import Data.Aeson
 import Data.Text
