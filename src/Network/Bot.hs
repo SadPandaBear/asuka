@@ -18,8 +18,11 @@ reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothi
 replyPost :: Message -> Text -> IO (Effect DiscordM ())
 replyPost msg code = do 
   let str = L.dropWord code
-  posts <- fetchPosts $ unpack str 
-  return $ reply msg $ pack posts
+  posts <- fetchPosts $ unpack str
+  print posts
+  case posts of
+      Just a -> return $ reply msg $ pack $ show a
+      Nothing -> return $ reply msg $ pack "Nothing found actually"
 
 runExample :: IO ()
 runExample = runBot (Bot "NDQxMDI3NTcyNDk1Njc5NTA5.DczDKw.vB6qmtGyRviCJOQhUYaKOEPWuOc") $ do

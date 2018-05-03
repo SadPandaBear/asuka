@@ -22,8 +22,9 @@ instance ToJSON Posts
 gateway :: String -> String
 gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
 
-fetchPosts :: String -> IO String
+fetchPosts :: String -> IO (Maybe Posts)
 fetchPosts code = do
   response <- simpleHttp $ gateway code
-  return $ L8.unpack response
+  let req = decode response :: Maybe Posts
+  return req
   
