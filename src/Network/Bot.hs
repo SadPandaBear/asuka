@@ -15,15 +15,13 @@ import Network.Discord
 reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
-replyPost :: Message -> Text -> IO (Effect DiscordM ())
-replyPost msg code = do 
+replyPost :: Text -> IO String
+replyPost code = do 
   let str = L.dropWord code
   posts <- fetchPosts $ unpack str
-  print posts
   case posts of
-      Just a -> return $ reply msg $ pack $ show a
-      -- TODO: Fix this shit
-      Nothing -> return $ reply msg $ pack "Nothing found actually"
+      Just a -> return $ show a
+      Nothing -> return "Nothing found actually"
 
 runExample :: IO ()
 runExample = runBot (Bot "Token") $ do
@@ -32,6 +30,5 @@ runExample = runBot (Bot "Token") $ do
 
   with MessageCreateEvent $ \msg@Message{..} -> do
     when ("baka!" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
-      -- TODO: Fix this shit
-      unsafePerformIO $ replyPost msg messageContent
+      liftIO (replyPost messageContent) >>= reply msg . pack
       
