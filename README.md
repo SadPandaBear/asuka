@@ -6,6 +6,7 @@ Asuka is a simple Discord Bot designed for global shipment tracking.
 
 ## Example Interaction
 
+### Tracking a shipment
 User command:
 
 `baka! <your order tracking id>`
@@ -13,3 +14,13 @@ User command:
 Bot reply:
 
 `Anta Baka?! Your package has been delivered in New York since June 13!`
+
+### Greeting
+
+User command: 
+
+`greet!`
+
+Bot reply:
+
+`:heartpulse:Guten Morgen, <username>!:heartpulse:`
