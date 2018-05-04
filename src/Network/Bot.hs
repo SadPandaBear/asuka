@@ -21,7 +21,7 @@ replyPost :: Text -> IO Text
 replyPost msg = fetchPosts (L.dropWord msg)  
   
 run :: IO ()
-run = runBot (Bot "NDQxOTYzMzk0MTgyOTM4NjM0.Dc4Tjg.4US-7KiTeNRFR0IjcNOfJQItC4w") $ do
+run = runBot (Bot "TOKEN") $ do
   with ReadyEvent $ \(Init v u _ _ _) ->
     liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
 

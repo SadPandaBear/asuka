@@ -46,7 +46,6 @@ statusPost (History {situacao="Objeto entregue ao destinat\239\191\189rio", date
   "Anta Baka?! Your package has been delivered in " ++ l ++ " since " ++ d ++ "!"
 statusPost (History {situacao=s, date=d, local=l}) = "How can *I* know?"
 
-
 fetchPosts :: Text -> IO Text
 fetchPosts code = do 
   content <- get $ unpack code
