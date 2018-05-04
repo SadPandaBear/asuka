@@ -41,10 +41,16 @@ get code = do
   response <- simpleHttp $ gateway code
   return $ parseMaybe history =<< decode response
 
+statusPost :: History -> String
+statusPost (History {situacao="Objeto entregue ao destinat\239\191\189rio", date=d, local=l}) =
+  "Anta Baka?! Your package has been delivered in " ++ l ++ " since " ++ d ++ "!"
+statusPost (History {situacao=s, date=d, local=l}) = "How can *I* know?"
+
+
 fetchPosts :: Text -> IO Text
 fetchPosts code = do 
   content <- get $ unpack code
   case content of
-    Just a -> return . pack . show $ Prelude.last a
+    Just a -> return . pack . statusPost $ Prelude.last a
     Nothing -> return "Nothing found actually"
   
