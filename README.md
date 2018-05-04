@@ -23,4 +23,4 @@ User command:
 
 Bot reply:
 
-`:heartpulse:Guten Morgen, <username>!:heartpulse:`
+`Guten Morgen, <nick>! ❤️`
