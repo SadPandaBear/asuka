@@ -31,27 +31,7 @@ instance ToJSON History where
     ]
 
 history :: Value -> Parser [History]
-history = withObject "history" $ \o -> o .: "historico"  -- or just (.: "data")
-
--- data Posts = Posts { 
---     historico :: !Array -- TODO: Fix this shit
---   , codigo :: String
---   , servico :: String
---   } deriving (Show, Generic)
-
--- instance FromJSON Posts where
---   parseJSON = withObject "posts" $ \o -> do
---     historico <- o .: "historico"
---     codigo <- o .: "codigo"
---     servico  <- o .: "servico"
---     return Posts{..}
-
--- instance ToJSON Posts where
---   toJSON Posts{..} = object
---     [ "codigo" .= codigo
---     , "servico" .= servico
---     , "historico" .= historico
---     ]       
+history = withObject "history" (.: "historico")
 
 gateway :: String -> String
 gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
