@@ -39,6 +39,5 @@ gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
 fetchPosts :: String -> IO (Maybe [History])
 fetchPosts code = do
   response <- simpleHttp $ gateway code
-  let req = parseMaybe history =<< decode response
-  return req
+  return $ parseMaybe history =<< decode response
   

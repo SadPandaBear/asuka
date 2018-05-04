@@ -21,7 +21,7 @@ posts :: Text -> IO Text
 posts code = do 
   content <- fetchPosts $ unpack code
   case content of
-    Just a -> return . pack $ show a
+    Just a -> return . pack . show $ Prelude.last a
     Nothing -> return "Nothing found actually"
 
 replyPost :: Text -> IO Text
