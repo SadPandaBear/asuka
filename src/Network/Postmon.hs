@@ -16,12 +16,12 @@ gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
 data History = History { 
     date :: String
   , local :: String
-  , situacao :: String
+  , status :: String
   } deriving (Show, Generic)
 
 instance FromJSON History where
   parseJSON = withObject "history" $ \o -> do
-    situacao <- o .: "situacao"
+    status <- o .: "situacao"
     local  <- o .: "local"
     date <- o .: "data"
     return History{..}
@@ -30,7 +30,7 @@ instance ToJSON History where
   toJSON History{..} = object 
     [ "data" .= date
     , "local" .= local
-    , "situacao" .= situacao
+    , "situacao" .= status
     ]
 
 history :: Value -> Parser [History]
@@ -42,9 +42,9 @@ get code = do
   return $ parseMaybe history =<< decode response
 
 statusPost :: History -> String
-statusPost (History {situacao="Objeto entregue ao destinat\239\191\189rio", date=d, local=l}) =
+statusPost (History {status="Objeto entregue ao destinat\239\191\189rio", date=d, local=l}) =
   "Anta Baka?! Your package has been delivered in " ++ l ++ " since " ++ d ++ "!"
-statusPost (History {situacao=s, date=d, local=l}) = "How can *I* know?"
+statusPost (History {status=s, date=d, local=l}) = "How can *I* know?"
 
 fetchPosts :: Text -> IO Text
 fetchPosts code = do 
