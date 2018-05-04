@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings, DeriveGeneric, InstanceSigs #-}
 
 module Network.Postmon 
     ( fetchPosts
@@ -17,20 +17,26 @@ data History = History {
 
 instance FromJSON History
 instance ToJSON History where
-  toJSON dt = object 
-    [ "data" .= date dt
-    , "local" .= local dt
-    , "situacao" .= situacao dt
+  toJSON :: History -> Value
+  toJSON history = object 
+    [ "data" .= toJSON (date history)
+    , "local" .= toJSON (local history)
+    , "situacao" .= toJSON (situacao history)
     ]
 
 data Posts = Posts { 
-    historico :: !Array -- TODO: Fix this shit
-  , codigo  :: String
+    historico :: History -- TODO: Fix this shit
+  , codigo :: String
   , servico :: String
   } deriving (Show, Generic)
 
 instance FromJSON Posts
-instance ToJSON Posts         
+instance ToJSON Posts where
+  toJSON posts = object
+    [ "codigo" .= toJSON (codigo posts)
+    , "servico" .= toJSON (servico posts)
+    , "historico" .= toJSON (historico posts)
+    ]       
 
 gateway :: String -> String
 gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
