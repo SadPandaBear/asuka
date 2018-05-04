@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings, DeriveGeneric, InstanceSigs #-}
+{-# LANGUAGE OverloadedStrings, DeriveGeneric, DeriveAnyClass #-}
 
 module Network.Postmon 
     ( fetchPosts
@@ -17,7 +17,6 @@ data History = History {
 
 instance FromJSON History
 instance ToJSON History where
-  toJSON :: History -> Value
   toJSON history = object 
     [ "data" .= toJSON (date history)
     , "local" .= toJSON (local history)
@@ -25,7 +24,7 @@ instance ToJSON History where
     ]
 
 data Posts = Posts { 
-    historico :: History -- TODO: Fix this shit
+    historico :: !Array -- TODO: Fix this shit
   , codigo :: String
   , servico :: String
   } deriving (Show, Generic)
