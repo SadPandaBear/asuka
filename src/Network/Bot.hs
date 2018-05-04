@@ -17,15 +17,8 @@ reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothi
 replyGreet :: User -> Text
 replyGreet User{userName=author} = ":heartpulse: Guten Morgen, " <>  pack author <> "! :heartpulse:"
 
-posts :: Text -> IO Text
-posts code = do 
-  content <- fetchPosts $ unpack code
-  case content of
-    Just a -> return . pack . show $ Prelude.last a
-    Nothing -> return "Nothing found actually"
-
 replyPost :: Text -> IO Text
-replyPost msg = posts (L.dropWord msg)  
+replyPost msg = fetchPosts (L.dropWord msg)  
   
 run :: IO ()
 run = runBot (Bot "NDQxOTYzMzk0MTgyOTM4NjM0.Dc4Tjg.4US-7KiTeNRFR0IjcNOfJQItC4w") $ do

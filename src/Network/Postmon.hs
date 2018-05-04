@@ -10,6 +10,9 @@ import Data.Aeson.Types
 import Data.Text
 import GHC.Generics
 
+gateway :: String -> String
+gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
+
 data History = History { 
     date :: String
   , local :: String
@@ -33,11 +36,15 @@ instance ToJSON History where
 history :: Value -> Parser [History]
 history = withObject "history" (.: "historico")
 
-gateway :: String -> String
-gateway = (++) "http://api.postmon.com.br/v1/rastreio/ect/"
-
-fetchPosts :: String -> IO (Maybe [History])
-fetchPosts code = do
+get :: String -> IO (Maybe [History])
+get code = do
   response <- simpleHttp $ gateway code
   return $ parseMaybe history =<< decode response
+
+fetchPosts :: Text -> IO Text
+fetchPosts code = do 
+  content <- get $ unpack code
+  case content of
+    Just a -> return . pack . show $ Prelude.last a
+    Nothing -> return "Nothing found actually"
   
