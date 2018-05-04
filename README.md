@@ -1,6 +1,6 @@
-# Asuka (WIP)
-
 <img align="right" src="https://raw.githubusercontent.com/SadPandaBear/asuka/master/avatar.png?token=AMqpGkF9pm-ugy6DhJyedFgu2XFzHkkCks5a9JWAwA%3D%3D" width=200 />
+
+# Asuka (WIP)
 
 Asuka is a simple Discord Bot designed for global shipment tracking.
 
