@@ -51,7 +51,7 @@ statusPost (History {status="Objeto entregue ao destinat\239\191\189rio", date=d
   ++ " since " 
   ++ d 
   ++ "! :mailbox_with_mail:"
-statusPost (History {status=s, date=d, local=l}) = "How can *I* know? :rage:"
+statusPost _ = "How can *I* know? :rage:"
 
 fetchPosts :: Text -> IO Text
 fetchPosts code = do 
