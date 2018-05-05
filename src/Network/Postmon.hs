@@ -51,6 +51,24 @@ statusPost (History {status="Objeto entregue ao destinat\239\191\189rio", date=d
   ++ " since " 
   ++ d 
   ++ "! :mailbox_with_mail:"
+statusPost (History {status="Objeto saiu para entrega ao destinat\239\191\189rio", date=d, local=l}) =
+  "Quickly! Your goods were set to be delivered in " 
+  ++ l 
+  ++ " at " 
+  ++ d 
+  ++ "! :mailbox: :exclamation:"
+statusPost (History {status="Objeto postado", date=d, local=l}) =
+  "Your package has been mailed in "
+  ++ l
+  ++ " at "
+  ++ d
+  ++ "! :package:"
+statusPost (History {status="Objeto encaminhado", date=d, local=l}) =
+  "Your package was set on route from "
+  ++ l
+  ++ " at "
+  ++ d
+  ++ "! :airplane_departure:"
 statusPost _ = "How can *I* know? :rage:"
 
 fetchPosts :: Text -> IO Text
