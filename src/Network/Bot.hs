@@ -17,8 +17,8 @@ reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothi
 replyGreet :: User -> Text
 replyGreet User{userName=author} = "Guten Morgen, " <> pack author <> "! :heart:"
 
-replyPost :: Text -> IO Text
-replyPost msg = fetchPosts (L.dropWord msg)  
+replyPost :: (Text -> IO Text)
+replyPost = fetchPosts . L.dropWord 
   
 run :: IO ()
 run = runBot (Bot "TOKEN") $ do
