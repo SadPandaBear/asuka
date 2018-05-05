@@ -46,7 +46,11 @@ get code = do
 
 statusPost :: History -> String
 statusPost (History {status="Objeto entregue ao destinat\239\191\189rio", date=d, local=l}) =
-  "Anta Baka?! Your package has been delivered in " ++ l ++ " since " ++ d ++ "!"
+  "Anta Baka?! Your package has been delivered in " 
+  ++ l 
+  ++ " since " 
+  ++ d 
+  ++ "! :mailbox_with_mail:"
 statusPost (History {status=s, date=d, local=l}) = "How can *I* know? :rage:"
 
 fetchPosts :: Text -> IO Text
