@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, RecordWildCards #-}
 
-module Network.Bot
+module Bot
     ( run
     ) where
 

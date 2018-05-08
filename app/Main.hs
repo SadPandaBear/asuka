@@ -1,6 +1,6 @@
 module Main where
 
-import Network.Bot
+import Bot
 
 main :: IO ()
 main = run
