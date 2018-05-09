@@ -1,1 +1,1 @@
-web: asuka-exe
+worker: asuka-exe
