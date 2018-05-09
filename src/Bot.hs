@@ -35,4 +35,4 @@ run = do
 
         when ("greet!" `isPrefixOf` messageContent && (not . userIsBot $ messageAuthor)) $ do
           reply msg $ replyGreet messageAuthor
-    Nothing -> liftIO . putStrLn $ "Bot token couldn't be retrieved. Check your environment variables."
+    Nothing -> liftIO . putStrLn $ "BOT_TOKEN couldn't be retrieved. Check your environment variables."
