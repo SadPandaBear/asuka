@@ -1,8 +1,10 @@
 <img align="right" src="https://raw.githubusercontent.com/SadPandaBear/asuka/master/avatar.png?token=AMqpGkF9pm-ugy6DhJyedFgu2XFzHkkCks5a9JWAwA%3D%3D" width=200 />
 
-# Asuka (WIP)
+# Asuka
 
 Asuka is a simple Discord Bot designed for global shipment tracking.
+
+[Invite me!](https://discordapp.com/api/oauth2/authorize?client_id=442172091148664842&permissions=2048&scope=bot)
 
 ## Example Interaction
 
@@ -31,7 +33,9 @@ Bot reply:
 
 ## Contributing
 
-The main purpose of this repository is to keep this bot evolving in order to give the user a better experience. Please, feel free to suggest new features or report bugs on the *Issues* page or to open up a *Pull Request* for those features or bugfixes. 
+The main purpose of this repository is to keep this bot evolving in order to give the user a better experience. Please, feel free to suggest new features or report bugs on the __Issues__ page or to open up a __Pull Request__ for those features or bugfixes. 
+
+Thanks to [Discord.hs](https://github.com/jano017/Discord.hs)!
 
 ## License
 

@@ -25,7 +25,7 @@ run :: IO ()
 run = do
   botToken <- lookupEnv "BOT_TOKEN"
   case botToken of 
-    Just t ->runBot (Bot t) $ do
+    Just t -> runBot (Bot t) $ do
       with ReadyEvent $ \(Init v u _ _ _) ->
         liftIO . putStrLn $ "Connected to gateway v" ++ show v ++ " as user " ++ show u
 

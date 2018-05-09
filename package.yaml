@@ -1,10 +1,10 @@
 name:                asuka
-version:             0.1.0.0
+version:             0.0.0.1
 github:              "sadpandabear/asuka"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2018 Author name here"
+author:              "Lucas Lentz"
+maintainer:          "lucas.lentz0306@gmail.com"
+copyright:           "2018 Lucas Lentz"
 
 extra-source-files:
 - README.md
