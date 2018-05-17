@@ -16,7 +16,7 @@ reply :: Message -> Text -> Effect DiscordM ()
 reply Message{messageChannel=chan} cont = fetch' $ CreateMessage chan cont Nothing
 
 replyGreet :: User -> Text
-replyGreet User{userName=author} = "Guten Morgen, " <> pack author <> "! :heart:"
+replyGreet User{userId=id} = "Guten Morgen, <@" <> pack (show id) <> ">! :heart:"
 
 replyPost :: (Text -> IO Text)
 replyPost = fetchPosts . L.dropWord 
