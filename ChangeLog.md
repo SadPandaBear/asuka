@@ -10,5 +10,5 @@
 
 ## Unreleased changes
 
-None at the moment.
+- Asuka can now mention other users in the server while greeting.
 

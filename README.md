@@ -4,7 +4,7 @@
 
 Asuka is a simple Discord Bot designed for global shipment tracking.
 
-[Invite me!](https://discordapp.com/api/oauth2/authorize?client_id=442172091148664842&permissions=2048&scope=bot)
+[Invite me!](https://discordapp.com/api/oauth2/authorize?client_id=442172091148664842&permissions=133120&scope=bot)
 
 ## Example Interaction
 
